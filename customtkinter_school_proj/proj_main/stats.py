@@ -19,7 +19,7 @@ class stat_viewer(ctk.CTk):
                         'Total seats sold': f'Total Seats Sold: {sum(self.seat_count.values())}', 'seats_1': self.seat_count[1], 'seats_2': self.seat_count[2], 'seats_3': self.seat_count[3],
                         'Total seats remaining': f'Total Remaining: {600 - sum(self.seat_count.values())}', 'rem_1': 200 - self.seat_count[1], 'rem_2': 200 - self.seat_count[2], 'rem_3': 200 - self.seat_count[3]}
 
-        for i, value in enumerate(self.content.values()):   # Did use a little bit of AI here
+        for i, value in enumerate(self.content.values()):   # Did use a little bit of AI (line 22-25)
             x = i // 4
             y = i % 4
             self.label(x_pos=(0.2 + y * 0.2), y_pos=(0.2 + x * 0.1), text=value)

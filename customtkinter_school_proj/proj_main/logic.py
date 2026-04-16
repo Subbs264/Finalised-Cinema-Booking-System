@@ -29,8 +29,8 @@ def discount(counter, seats):
 
 #----------------------------------Calculates new price----------------------------------
 def calculate_new_price(seats, discounted_price, seat_price=10):
-    '''Calculates the total price of seats (seat_price for every standard one, half for every discounted one)'''
-    return (((seats - discounted_price) * seat_price) + (discounted_price * (seat_price // 2)))
+    '''Calculates the total price of seats (seat_price for every standard one, under half for every discounted one)'''
+    return (((seats - discounted_price) * seat_price) + (discounted_price * (seat_price // 2 - 1)))
 
 #----------------------------------Checks to see if admin is blocking seats----------------------------------
 def check_admin(entries):

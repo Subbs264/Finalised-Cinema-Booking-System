@@ -24,12 +24,19 @@ Any commands given are enclosed within a <command>Command<command>
 
 
 #   UserMaintainance/InteractionGuide
+> [!NOTE]
+I have not inputted a real email into the emailer, it holds a temporary fake email address
 
-1. Run main.py a window should pop up, requesting a username/password (Username, Password = STAFF, 123)
-2. Follow on screen instructions, selecting a night
-3. Select your seats, already chosen seats will be coloured black, currently chosen seats (yours) are highlighted red, once seats are chosen select the book seats button
-4. Once seats are chosen, input the customers details and finalise the bookings/ If you are looking to block out seats input admin into every entry to nullify the booking cost
-5. After booking is finalised the program shuts down, saving the saved details, run main.py to begin another booking
+
+1. Run main.py, a window should pop up with allowing you to choose between booking or viewing performance stats
+2. If booking: log in with your staff credentials (Username: Staff, Password: 123)
+3. Select the night of the performance you wish to book (Night 1, 2 or 3)
+4. Select your seats, already chosen seats are marked black, your currently selected seats are red and green seats are free (we encourage to not leave middle seats)
+5. Enter the customer's details (name, customer type, phone number). Tick the discount checkbox if the customer is under 18 or over 65 and enter the number of discounted people
+   Normal customers require the type field to be 'regular', 'govener' for govener and 'staff' for staff
+6. Press Enter to confirm. A QR code ticket will be generated and emailed to the customer
+7. If you need to block out seats, enter 'admin' into all fields — this sets the booking cost to £0
+8. After booking is finalised the program closes. Run main.py to begin another booking
 
 
 #   UserMaintainance/FAQs&TroubleShooting

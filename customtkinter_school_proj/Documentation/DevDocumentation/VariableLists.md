@@ -18,7 +18,8 @@ self.go_forward -> True/False that decides if the program should continue to the
 #   booking_page.py
 self.seats -> list of seat IDs forwarded from stage_view
 self.night -> the chosen performance night
-self.seat_price -> total price calculated from number of seats
+self.per_seat_price -> the dynamic price per individual seat
+self.seat_price -> total price calculated from number of seats * per seat price
 self.new_price -> updated price after any discounts are applied
 self.discount_checked -> boolean tracking whether the discount checkbox is ticked
 
@@ -36,6 +37,7 @@ self.go_forward -> boolean that decides if the program should continue
 night_choice -> the selected performance night passed between stages
 chosen_seats -> list of seats selected by the user passed to the booking page
 login_screen.logged_in -> checked to decide if the program should continue past login
+seat_price -> the dynamically calculated price per seat for the chosen night
 
 #   credential_database.py
 connection -> the sqlite3 database connection object
@@ -46,3 +48,19 @@ result -> the data returned from a database query
 discounted -> the number of seats eligible for a discount
 occupied -> a set of all booked and selected seats combined
 has_gap -> boolean indicating if a single seat would be left stranded
+
+#   choice.py
+self.choice -> stores the user's choice ('continue_with_booking' or 'view_stats')
+
+#   stats.py
+self.revenue -> dictionary of total revenue per night {1: float, 2: float, 3: float}
+self.seat_count -> dictionary of seats sold per night {1: int, 2: int, 3: int}
+self.content -> dictionary of all values to be displayed in the stats grid
+
+#   qr.py
+content -> dictionary of booking details encoded into the QR code
+filepath -> the file path where the generated QR code image is saved
+
+#   emailer.py
+content -> the body text of the email sent to the customer
+message -> the EmailMessage object constructed before sending

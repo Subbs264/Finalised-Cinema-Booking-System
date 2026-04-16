@@ -35,7 +35,7 @@ def create_booking_table():
 
 #----------------------------------Database Connection Function----------------------------------
 def credential_connect(table, command, fetch_all=False):
-    '''Connects to database of choice, execute command of choice returns the result'''
+    '''Connects to database of choice, execute command of choice returns the result.. By far one of the most useful functions in this project'''
     connection = sqlite3.connect(f'databases/{table}')
     cursor = connection.cursor()
     cursor.execute(command)

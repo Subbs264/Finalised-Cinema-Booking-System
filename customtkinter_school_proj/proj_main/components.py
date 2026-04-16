@@ -5,6 +5,8 @@ from booking_page import Booking
 from credential_database import initialise_DBs
 from logic import price_checker
 from choice import Choice
+from stats import stat_viewer
+from search_and_void import BookingSearch
 '''
 Components.py is the connective tissue of the project tieing the program together
 It calls upon various functions from other files within the proj_main directory
@@ -22,7 +24,16 @@ def run_program():
         return
     
     if choice_screen.choice == 'view_stats':
-        pass
+        stat_screen = stat_viewer()
+        stat_screen.mainloop()
+        stat_screen.destroy()
+        return
+
+    elif choice_screen.choice == 'terminate_booking':
+        book_search = BookingSearch()
+        book_search.mainloop()
+        book_search.destroy()
+        return
 
     login_screen = Login()
     login_screen.mainloop()
