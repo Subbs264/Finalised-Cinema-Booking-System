@@ -49,3 +49,6 @@ A: No it is not a bug, it is an intentional design feature that prevents gap sea
 
 Q: How will I recieve my booking electronically?
 A: You will recieve a Google Email that contains a QRCode speecifying your unique booking.
+
+Q: I have created the virtual environment (.venv) and I have ran the program, it has generated the qrcode despite the message appearing in the terminal
+A: Check where you are executing the code from, you may be inside .venv\Scripts still, perform <command>cd ..<command> twice or until you are inside the main project folder
