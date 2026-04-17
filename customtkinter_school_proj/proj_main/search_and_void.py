@@ -44,8 +44,7 @@ class BookingSearch(ctk.CTk):
             self.text_box.insert('1.0', 'Please enter a phone number to begin to look for a booking')
             self.text_box.configure(state='disabled')
             return
-        
-        
+
 
         if self.phone == 'all':
             result = credential_connect('bookings', 'SELECT * FROM bookings', fetch_all=True)
@@ -59,14 +58,25 @@ class BookingSearch(ctk.CTk):
         result = credential_connect('bookings', f"SELECT * FROM bookings WHERE phone='{self.phone}'", fetch_all=True)
 
         if result:
-            self.text_box.insert('1.0', f'Name: {result[0][0]}\nCustomer Type: {result[0][1]}\nPhone: {result[0][2]}\nNight: {result[0][3]}Seats: {result[0][4].split(',')}')
+            self.text_box.insert('1.0', f'Name: {result[0][0]}\nCustomer Type: {result[0][1]}\nPhone: {result[0][2]}\nNight: {result[0][3]}\nSeats: {result[0][4].split(',')}')
         else:
             self.text_box.insert('1.0', 'No booking found for that phone number')
 
         self.text_box.configure(state='disabled')
 
     def terminate_booking(self):
-        credential_connect('bookings', f"DELETE FROM bookings WHERE phone='{self.phone}'", fetch_all=False)
+        self.text_box.configure(state='normal')
+        result = credential_connect('bookings', f"DELETE FROM bookings WHERE phone='{self.phone}'", fetch_all=True)
+        if result:
+            self.text_box.insert('1.0', 'Booking terminated')
+        else:
+            self.text_box.insert('1.0', 'No Booking selected to be terminated.\n')
+        
+        self.text_box.configure(state='disabled')
+
+        print(result)
+
+        return
 
 if __name__ == '__main__':
     app = BookingSearch()
