@@ -1,3 +1,6 @@
 > add a search for people who specifically booked night 1 2 or 3 in search_and_void.py
 > add todo above to UserDocumentation
 > create erd diagram in onenote
+> add in draw.io diagrams / finsiih the rest next, check_gap
+> replace redundant varaible neames such as cred in the OTU login_validate func in logic.py, replace with the SQL/optimise code
+> update documentation
