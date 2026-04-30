@@ -25,7 +25,7 @@ Any commands given are enclosed within a <command>Command<command>
 
 #   UserMaintainance/InteractionGuide
 > [!NOTE]
-I have not inputted a real email into the emailer, it holds a temporary fake email address
+I have not inputted a real email into the emailer, it holds a temporary fake email address. If you want to use it, input your credentials and it should work
 
 
 1. Run main.py, a window should pop up with allowing you to choose between booking or viewing performance stats
