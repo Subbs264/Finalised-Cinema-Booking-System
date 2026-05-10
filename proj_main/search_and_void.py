@@ -1,0 +1,85 @@
+import customtkinter as ctk
+from logic import select_all_bookings, select_booking_with_phone, delete_booking_with_phone
+
+class BookingSearch(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+
+        self.title('Booking Search')
+        self.geometry('600x480')
+        self.phone = None
+
+        self.label()
+        self.entry()
+        self.text()
+        self.find_booking_button()
+        self.terminate_booking_button()
+
+    def label(self):
+        self.title_label = ctk.CTkLabel(self, text='Bookings search', font=('Arial', 20))
+        self.title_label.place(relx=0.5, rely=0.1, anchor='center')
+
+    def entry(self):
+        self.enter_phone = ctk.CTkEntry(self, placeholder_text='Enter Phone number', font=('Arial', 15), width=150)
+        self.enter_phone.place(relx=0.5, rely=0.3, anchor='center')
+
+    def text(self):
+        self.text_box = ctk.CTkTextbox(self, width=400, height=200, font=('Arial', 14), state='disabled')
+        self.text_box.place(relx=0.5, rely=0.55, anchor='center')
+
+    def find_booking_button(self):
+        self.find = ctk.CTkButton(self, text='Find Booking', font=('Arial', 14), width=100, command=self.locate_booking)
+        self.find.place(relx=0.72, rely=0.3, anchor='center')
+
+    def terminate_booking_button(self):
+        self.terminate = ctk.CTkButton(self, text='Terminate Booking', font=('Arial', 14), width=100, fg_color='red', text_color='black', command=self.terminate_booking)
+        self.terminate.place(relx=0.5, rely=0.85, anchor='center')
+
+    def locate_booking(self):
+        self.phone = self.enter_phone.get().strip()
+
+        self.text_box.configure(state='normal')
+        self.text_box.delete('1.0', 'end')
+
+        if not self.phone:
+            self.text_box.insert('1.0', 'Please enter a phone number to begin to look for a booking')
+            self.text_box.configure(state='disabled')
+            return
+
+        if self.phone == 'all':
+            result = select_all_bookings()
+            if result:
+                pairs = [f'{x[0]}, {x[2]}, night: {x[3]}' for x in result]
+
+                self.text_box.insert('1.0', '\n'.join(pairs))
+                self.text_box.configure(state='disabled')
+                return
+
+        result = select_booking_with_phone(phone=self.phone)
+
+        if not result:
+            self.text_box.insert('1.0', 'No booking found for that phone number')
+
+        else:
+            for x in range(len(result)):
+                self.text_box.insert('1.0', f'\nName: {result[x][0]}\nCustomer Type: {result[x][1]}\nPhone: {result[x][2]}\nNight: {result[x][3]}\nSeats: {result[x][4].split(",")}\n')
+
+        self.text_box.configure(state='disabled')
+
+    def terminate_booking(self):
+        if not self.phone:
+            self.text_box.configure(state='normal')
+            self.text_box.delete('1.0', 'end')
+            self.text_box.insert('1.0', 'No booking selected. Search for a booking first.')
+            self.text_box.configure(state='disabled')
+            return
+        
+        delete_booking_with_phone(phone=self.phone)
+        self.text_box.configure(state='normal')
+        self.text_box.delete('1.0', 'end')
+        self.text_box.insert('1.0', 'Booking terminated')
+        self.text_box.configure(state='disabled')
+
+if __name__ == '__main__':
+    app = BookingSearch()
+    app.mainloop()
